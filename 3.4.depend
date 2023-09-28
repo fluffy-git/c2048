@@ -18,3 +18,13 @@
 	<conio.h>
 	<windows.h>
 
+1695884465 source:c:\users\fluffy\documents\github\c2048\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"conioex.h"
+
+1695882313 c:\users\fluffy\documents\github\c2048\conioex.h
+	<conio.h>
+	<windows.h>
+

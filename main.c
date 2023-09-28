@@ -11,7 +11,6 @@ void print_row(int m[4][4], int z){ //field & zeile
         printf("%c ", 186);
         textcolor(LIGHTRED);
 
-
         switch(m[z][i]){
 
             case 0:
@@ -92,6 +91,7 @@ void print_field(int m[4][4]){ // zeile
 }
 int spawn_num(int feld[4][4])
 {
+    //testest
     int i;
     int j;
     srand(time(NULL));
@@ -112,7 +112,7 @@ int main()
     int field[4][4] =  {{2048,2,0,2048},
                         {512,0,128,0},
                         {16,0,8,0},
-                        {8,0,0,4}};
+                        {8,0,0,4}}; //lepi stinkt
 
     print_field(field);
     spawn_num(field);
