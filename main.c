@@ -8,9 +8,14 @@ void print_row(int m[4][4], int z){ //field & zeile
         printf("%c ", 186);
         textcolor(LIGHTRED);
 
-        if(m[z][i])
+        if(m[z][i]== 0)
+        {
+            printf("  ");
+        }
+        else{
+            printf("%d ", m[z][i]);
+        }
 
-        printf("%d ", m[z][i]);
         textcolor(LIGHTGRAY);
     }
     printf("%c\n", 186);
@@ -37,10 +42,10 @@ void print_field(int m[4][4]){ // zeile
 
 int main()
 {
-    int field[4][4] =  {{0,0,0,0},
+    int field[4][4] =  {{0,2,0,0},
                         {0,0,0,0},
-                        {0,0,0,0},
-                        {0,0,0,0}};
+                        {0,0,8,0},
+                        {16,0,0,4}};
 
     print_field(field);
 
