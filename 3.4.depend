@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1695881244 source:z:\2chit\sew\3.4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"conioex.h"
+
+1695880453 z:\2chit\sew\3.4\conioex.h
+	<conio.h>
+	<windows.h>
+
