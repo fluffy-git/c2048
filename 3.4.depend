@@ -8,3 +8,13 @@
 	<conio.h>
 	<windows.h>
 
+1695883788 source:c:\users\graf-andrasch\documents\github\c2048\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"conioex.h"
+
+1695882958 c:\users\graf-andrasch\documents\github\c2048\conioex.h
+	<conio.h>
+	<windows.h>
+

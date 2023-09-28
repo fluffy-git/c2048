@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "conioex.h"
 
 void print_row(int m[4][4], int z){ //field & zeile
@@ -39,7 +40,23 @@ void print_field(int m[4][4]){ // zeile
     textcolor(LIGHTGRAY);
 
 }
+int spawn_num(int feld[4][4])
+{
+    int i;
+    int j;
+    srand(time(NULL));
+    while(feld[i][j]==0)
+    {
+        i = rand() % (3 + 1 - 0) + 0;
+        j = rand() % (3 + 1 - 0) + 0;
+        if(feld[i][j]==0)
+        {
+            feld[i][j]=2;
+        }
+    }
 
+
+}
 int main()
 {
     int field[4][4] =  {{0,2,0,0},
@@ -48,6 +65,6 @@ int main()
                         {16,0,0,4}};
 
     print_field(field);
-
+    spawn_num(field);
     return 0;
 }
