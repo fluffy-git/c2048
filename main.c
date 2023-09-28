@@ -114,7 +114,7 @@ int main()
                         {16,0,8,0},
                         {8,0,0,4}}; //lepi stinkt
 
-    print_field(field);
+    print_field(field); //feld ausgeben
     spawn_num(field);
     return 0;
 }

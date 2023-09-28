@@ -42,3 +42,5 @@ Thumbs.db
 
 .layout
 .depend
+*.exe
+*.o
