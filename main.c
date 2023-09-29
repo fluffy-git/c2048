@@ -4,7 +4,7 @@
 #include "conioex.h"
 
 
-//start:region printing of the field
+// printing of the field
 
 void print_row_empty(){ //leere zeile
 
@@ -21,59 +21,72 @@ void print_row(int m[4][4], int z){ //field & zeile
 
     for(int i = 0; i<4; i++){
         printf("%c ", 186);
-        textcolor(LIGHTRED);
+
 
         switch(m[z][i]){
 
             case 0:
+                textcolor(LIGHTRED);
                 printf("      ");
                 break;
 
             case 2:
+                textcolor(LIGHTRED);
                 printf("  2   ");
                 break;
 
             case 4:
+                textcolor(RED);
                 printf("  4   ");
                 break;
 
             case 8:
+                textcolor(YELLOW);
                 printf("  8   ");
                 break;
 
             case 16:
+                textcolor(LIGHTGREEN);
                 printf(" 16   ");
                 break;
 
             case 32:
+                textcolor(GREEN);
                 printf(" 32   ");
                 break;
 
             case 64:
+                textcolor(LIGHTCYAN);
                 printf(" 64   ");
                 break;
 
             case 128:
+                textcolor(CYAN);
                 printf(" 128  ");
                 break;
 
             case 256:
+                textcolor(LIGHTBLUE);
                 printf(" 256  ");
                 break;
 
             case 512:
+                textcolor(BLUE);
                 printf(" 512  ");
                 break;
 
             case 1024:
+                textcolor(LIGHTMAGENTA);
                 printf("1024  ");
                 break;
 
             case 2048:
+                textcolor(MAGENTA);
                 printf("2048  ");
                 break;
 
             default:
+                textcolor(RED);
                 printf("ERROR!");
                 break;
 
@@ -85,13 +98,6 @@ void print_row(int m[4][4], int z){ //field & zeile
 
 }
 void print_field(int m[4][4]){ // zeile
-//start:region printing of the field
-
-//start:region game logic
-
-
-
-
 
     textcolor(LIGHTGRAY);
 
@@ -115,6 +121,9 @@ void print_field(int m[4][4]){ // zeile
     textcolor(LIGHTGRAY);
 
 }
+
+//game logic
+
 int spawn_num(int feld[4][4]){
     //testest
     int i;
@@ -132,9 +141,22 @@ int spawn_num(int feld[4][4]){
             feld[i][j]=2;
             done=1;
         }
+    }
+}
+
+int check_gamestate(int m[4][4]){
+
+    for(int x=0; x<4; x++){
+
+        for(int y=0; y<4; y++){
+            if(m[y][x]==2048){
+                return 1;
+            }
+        }
 
     }
 
+    return 0;
 
 }
 
@@ -196,15 +218,15 @@ int gravity_left(int m[4][4]){
     int possible = 0;
     for(int i =0; i<3; i++){
 
-        for(int x=0; x<4; x++){
+        for(int y=0; y<4; y++){
 
-            for(int y=3; y>0; y--){
-                int over = m[y-1][x];
+            for(int x=0; x<3; x++){
+                int over = m[y][x+1];
                 int current = m[y][x];
 
                 if(over==current || current == 0){
-                    m[y][x]+= m[y-1][x];
-                    m[y-1][x] = 0;
+                    m[y][x]+= m[y][x+1];
+                    m[y][x+1] = 0;
                     possible++;
                 }
             }
@@ -221,15 +243,15 @@ int gravity_right(int m[4][4]){
     int possible = 0;
     for(int i =0; i<3; i++){
 
-        for(int x=0; x<4; x++){
+        for(int y=0; y<4; y++){
 
-            for(int y=3; y>0; y--){
-                int over = m[y-1][x];
+            for(int x=3; x>0; x--){
+                int over = m[y][x-1];
                 int current = m[y][x];
 
                 if(over==current || current == 0){
-                    m[y][x]+= m[y-1][x];
-                    m[y-1][x] = 0;
+                    m[y][x]+= m[y][x-1];
+                    m[y][x-1] = 0;
                     possible++;
                 }
             }
@@ -242,18 +264,19 @@ int gravity_right(int m[4][4]){
 
 }
 
-int main()
-{
+int main(){
     int field[4][4] =  {{0,0,0,0},
+                        {512,0,0,512},
                         {0,0,0,0},
-                        {0,0,0,0},
-                        {0,0,0,0}};
+                        {1024,0,0,0}};
     int key_valid = 0;
-    int game = 1;
+    int run = 1;
+    int win = 0;
+    int fail = 0;
 
     spawn_num(field);
 
-    while(1){
+    do{
         key_valid=0;
 
         clrscr();
@@ -269,28 +292,48 @@ int main()
                 {
                 case 72 :
                     if(gravity_up(field) != 0){
-                        game=0;
+                        win=0;
                     }
                     key_valid=1;
                     break;
                 case 80 :
                     if(gravity_down(field) != 0){
-                        game=0;
+                        win=0;
                     }
                     key_valid=1;
                     break;
                 case 75 :
+                    if(gravity_left(field) != 0){
+                        win=0;
+                    }
                     key_valid=1;
                     break;
                 case 77 :
+                    if(gravity_right(field) != 0){
+                        win=0;
+                    }
                     key_valid=1;
                     break;
                 }
             }
         }while(!key_valid);
 
+        win=check_gamestate(field);
+
+    }while(run && !win && !fail);
+
+    clrscr();
+    print_field(field); //feld ausgeben
+
+    if(win){
+        printf("you won!");
+    }
+    else if(fail){
+        printf("game over!");
+    }
+    else{
+        printf("whoops error lol");
     }
 
-    printf("game over!");
     return 0;
 }
