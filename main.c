@@ -184,6 +184,8 @@ int gravity_down(int m[4][4]){
 
     }
 
+    if(possible)
+
     return possible;
 
 }
@@ -281,36 +283,36 @@ int main(){
 
         clrscr();
         spawn_num(field);
-        print_field(field); //feld ausgeben
+        print_field(field); //print field
 
 
-        do{ // überprüfung ob die taste gültig ist
+        do{ // check if the key press is valid
             if ( kbhit() )
             {
                 char c = getch();
-                switch( c ) // entscheiden was passiert
+                switch( c ) // decide whats happening
                 {
                 case 72 :
                     if(gravity_up(field) != 0){
-                        win=0;
+                        fail++;
                     }
                     key_valid=1;
                     break;
                 case 80 :
                     if(gravity_down(field) != 0){
-                        win=0;
+                        fail++;
                     }
                     key_valid=1;
                     break;
                 case 75 :
                     if(gravity_left(field) != 0){
-                        win=0;
+                        fail++;
                     }
                     key_valid=1;
                     break;
                 case 77 :
                     if(gravity_right(field) != 0){
-                        win=0;
+                        fail++;
                     }
                     key_valid=1;
                     break;
