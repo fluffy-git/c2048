@@ -160,7 +160,6 @@ int check_win(int m[4][4]){
 
 }
 
-
 int check_down(int m[4][4]) {
     int possible = 0;
     for (int x = 0; x < 4; x++) {
@@ -190,7 +189,6 @@ int check_up(int m[4][4]) {
     }
     return (possible > 0) ? 1 : 0;
 }
-
 
 int check_left(int m[4][4]) {
     int possible = 0;
@@ -230,9 +228,26 @@ int check_legal_moves(int m[4][4]) {
     }
 }
 
+int check_free(int field[4][4]){
+    int i;
+    int j;
+
+    for(i=0; i<4; i++)
+    {
+        for(j=0; j<4; j++)
+        {
+            if(field[i][j]==0)
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 // gravity
 
-void gravity_down(int m[4][4]){
+int gravity_down(int m[4][4]){
 
     for(int i =0; i<3; i++){
         if(check_down(m)==1){
@@ -252,10 +267,15 @@ void gravity_down(int m[4][4]){
             }
 
         }
+        else{
+            return 1;
+        }
     }
+    return 0;
 
 }
-void gravity_up(int m[4][4]){
+
+int gravity_up(int m[4][4]){
 
     for(int i =0; i<3; i++){
         if(check_up(m)==1){
@@ -275,11 +295,15 @@ void gravity_up(int m[4][4]){
             }
 
         }
+        else{
+            return 1;
+        }
     }
+    return 0;
 
 }
 
-void gravity_left(int m[4][4]){
+int gravity_left(int m[4][4]){
 
     for(int i =0; i<3; i++){
         if(check_left(m)==1){
@@ -299,11 +323,15 @@ void gravity_left(int m[4][4]){
             }
 
         }
-
+        else{
+            return 1;
+        }
     }
+    return 0;
 
 }
-void gravity_right(int m[4][4]){
+
+int gravity_right(int m[4][4]){
 
     for(int i =0; i<3; i++){
         if(check_right(m)==1){
@@ -323,12 +351,15 @@ void gravity_right(int m[4][4]){
             }
 
         }
-
+        else{
+            return 1;
+        }
     }
+    return 0;
 
 }
-int spawn_possible( int field[4][4])
-{
+
+int spawn_possible( int field[4][4]){
     int i;
     int j;
 
@@ -344,6 +375,9 @@ int spawn_possible( int field[4][4])
     }
     return 0;
 }
+
+// main bruh
+
 int main(){
 
     int field[4][4] =  {{0,0,0,0},
@@ -373,19 +407,19 @@ int main(){
                 char c = getch();
                 switch (c) {
                     case 72:
-                        gravity_up(field);
+                        if(gravity_up(field) && (!check_free(field))){fail=1;}
                         key_valid = 1;
                         break;
                     case 80:
-                        gravity_down(field);
+                        if(gravity_down(field) && (!check_free(field))){fail=1;}
                         key_valid = 1;
                         break;
                     case 75:
-                        gravity_left(field);
+                        if(gravity_left(field) && (!check_free(field))){fail=1;}
                         key_valid = 1;
                         break;
                     case 77:
-                        gravity_right(field);
+                        if(gravity_right(field) && (!check_free(field))){fail=1;}
                         key_valid = 1;
                         break;
                 }
@@ -394,7 +428,7 @@ int main(){
 
         win = check_win(field);
 
-    } while (run && !win && check_legal_moves(field));
+    } while (run && !win && check_legal_moves(field) && !fail );
 
     clrscr();
     print_field(field);
