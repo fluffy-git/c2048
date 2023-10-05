@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "conioex.h"
-
+#include <windows.h>
 
 // printing of the field
 
@@ -119,6 +119,17 @@ void print_field(int m[4][4]){ // zeile
     print_row_empty();
     printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 188);
     textcolor(LIGHTGRAY);
+
+}
+
+// sequences
+
+void startup_seq(){
+
+    SetConsoleTitle("  - c2048 -  ");
+
+    //HWND wh = GetConsoleWindow();
+    //MoveWindow(wh, 0, 0, 340, 180, TRUE);
 
 }
 
@@ -266,6 +277,10 @@ int gravity_down(int m[4][4]){
 
             }
 
+            Sleep(30);
+            clrscr();
+            print_field(m);
+
         }
         else{
             return 1;
@@ -293,6 +308,10 @@ int gravity_up(int m[4][4]){
                 }
 
             }
+
+            Sleep(30);
+            clrscr();
+            print_field(m);
 
         }
         else{
@@ -322,6 +341,10 @@ int gravity_left(int m[4][4]){
 
             }
 
+            Sleep(30);
+            clrscr();
+            print_field(m);
+
         }
         else{
             return 1;
@@ -349,6 +372,10 @@ int gravity_right(int m[4][4]){
                 }
 
             }
+
+            Sleep(30);
+            clrscr();
+            print_field(m);
 
         }
         else{
@@ -388,6 +415,8 @@ int main(){
     int run = 1;
     int win = 0;
     int fail = 0;
+
+    startup_seq();
 
     spawn_num(field);
 
