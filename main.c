@@ -144,7 +144,7 @@ int spawn_num(int feld[4][4]){
     }
 }
 
-int check_gamestate(int m[4][4]){
+int check_win(int m[4][4]){
 
     for(int x=0; x<4; x++){
 
@@ -160,113 +160,176 @@ int check_gamestate(int m[4][4]){
 
 }
 
+
+int check_down(int m[4][4]) {
+    int possible = 0;
+    for (int x = 0; x < 4; x++) {
+        for (int y = 3; y > 0; y--) {
+            int over = m[y - 1][x];
+            int current = m[y][x];
+
+            if (over == current || current == 0) {
+                possible++;
+            }
+        }
+    }
+    return (possible > 0) ? 1 : 0;
+}
+
+int check_up(int m[4][4]) {
+    int possible = 0;
+    for (int x = 0; x < 4; x++) {
+        for (int y = 0; y < 3; y++) {
+            int over = m[y + 1][x];
+            int current = m[y][x];
+
+            if (over == current || current == 0) {
+                possible++;
+            }
+        }
+    }
+    return (possible > 0) ? 1 : 0;
+}
+
+
+int check_left(int m[4][4]) {
+    int possible = 0;
+    for (int y = 0; y < 4; y++) {
+        for (int x = 0; x < 3; x++) {
+            int over = m[y][x + 1];
+            int current = m[y][x];
+
+            if (over == current || current == 0) {
+                possible++;
+            }
+        }
+    }
+    return (possible > 0) ? 1 : 0;
+}
+
+int check_right(int m[4][4]) {
+    int possible = 0;
+    for (int y = 0; y < 4; y++) {
+        for (int x = 3; x > 0; x--) {
+            int over = m[y][x - 1];
+            int current = m[y][x];
+
+            if (over == current || current == 0) {
+                possible++;
+            }
+        }
+    }
+    return (possible > 0) ? 1 : 0;
+}
+
+int check_legal_moves(int m[4][4]) {
+    if (check_up(m) || check_down(m) || check_left(m) || check_right(m)) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 // gravity
 
-int gravity_down(int m[4][4]){
+void gravity_down(int m[4][4]){
 
-    int possible = 0;
-    for(int i =0; i<3; i++){
+    if(check_down(m)==1){
+        for(int i =0; i<3; i++){
 
-        for(int x=0; x<4; x++){
+            for(int x=0; x<4; x++){
 
-            for(int y=3; y>0; y--){
-                int over = m[y-1][x];
-                int current = m[y][x];
+                for(int y=3; y>0; y--){
+                    int over = m[y-1][x];
+                    int current = m[y][x];
 
-                if(over==current || current == 0){
-                    m[y][x]+= m[y-1][x];
-                    m[y-1][x] = 0;
-                    possible++;
+                    if(over==current || current == 0){
+                        m[y][x]+= m[y-1][x];
+                        m[y-1][x] = 0;
+                    }
                 }
+
             }
 
         }
-
     }
-
-    if(possible)
-
-    return possible;
 
 }
-int gravity_up(int m[4][4]){
+void gravity_up(int m[4][4]){
 
-    int possible = 0;
-    for(int i =0; i<3; i++){
+    if(check_up(m)==1){
+        for(int i =0; i<3; i++){
 
-        for(int x=0; x<4; x++){
+            for(int x=0; x<4; x++){
 
-            for(int y=0; y<3; y++){
-                int over = m[y+1][x];
-                int current = m[y][x];
+                for(int y=0; y<3; y++){
+                    int over = m[y+1][x];
+                    int current = m[y][x];
 
-                if(over==current || current == 0){
-                    m[y][x]+= m[y+1][x];
-                    m[y+1][x] = 0;
-                    possible++;
+                    if(over==current || current == 0){
+                        m[y][x]+= m[y+1][x];
+                        m[y+1][x] = 0;
+                    }
                 }
+
             }
 
         }
-
     }
-
-    return possible;
 
 }
 
-int gravity_left(int m[4][4]){
+void gravity_left(int m[4][4]){
 
-    int possible = 0;
-    for(int i =0; i<3; i++){
+    if(check_left(m)==1){
+        for(int i =0; i<3; i++){
 
-        for(int y=0; y<4; y++){
+            for(int y=0; y<4; y++){
 
-            for(int x=0; x<3; x++){
-                int over = m[y][x+1];
-                int current = m[y][x];
+                for(int x=0; x<3; x++){
+                    int over = m[y][x+1];
+                    int current = m[y][x];
 
-                if(over==current || current == 0){
-                    m[y][x]+= m[y][x+1];
-                    m[y][x+1] = 0;
-                    possible++;
+                    if(over==current || current == 0){
+                        m[y][x]+= m[y][x+1];
+                        m[y][x+1] = 0;
+                    }
                 }
+
             }
 
         }
 
     }
-
-    return possible;
 
 }
-int gravity_right(int m[4][4]){
+void gravity_right(int m[4][4]){
 
-    int possible = 0;
-    for(int i =0; i<3; i++){
+    if(check_right(m)==1){
+        for(int i =0; i<3; i++){
 
-        for(int y=0; y<4; y++){
+            for(int y=0; y<4; y++){
 
-            for(int x=3; x>0; x--){
-                int over = m[y][x-1];
-                int current = m[y][x];
+                for(int x=3; x>0; x--){
+                    int over = m[y][x-1];
+                    int current = m[y][x];
 
-                if(over==current || current == 0){
-                    m[y][x]+= m[y][x-1];
-                    m[y][x-1] = 0;
-                    possible++;
+                    if(over==current || current == 0){
+                        m[y][x]+= m[y][x-1];
+                        m[y][x-1] = 0;
+                    }
                 }
+
             }
 
         }
 
     }
-
-    return possible;
 
 }
 
 int main(){
+
     int field[4][4] =  {{0,0,0,0},
                         {512,0,0,512},
                         {0,0,0,0},
@@ -278,63 +341,48 @@ int main(){
 
     spawn_num(field);
 
-    do{
-        key_valid=0;
-
+     do {
+        srand(time(NULL));
+        key_valid = 0;
         clrscr();
         spawn_num(field);
-        print_field(field); //print field
+        print_field(field);
 
-
-        do{ // check if the key press is valid
-            if ( kbhit() )
-            {
+        do {
+            if (kbhit()) {
                 char c = getch();
-                switch( c ) // decide whats happening
-                {
-                case 72 :
-                    if(gravity_up(field) != 0){
-                        fail++;
-                    }
-                    key_valid=1;
-                    break;
-                case 80 :
-                    if(gravity_down(field) != 0){
-                        fail++;
-                    }
-                    key_valid=1;
-                    break;
-                case 75 :
-                    if(gravity_left(field) != 0){
-                        fail++;
-                    }
-                    key_valid=1;
-                    break;
-                case 77 :
-                    if(gravity_right(field) != 0){
-                        fail++;
-                    }
-                    key_valid=1;
-                    break;
+                switch (c) {
+                    case 72:
+                        gravity_up(field);
+                        key_valid = 1;
+                        break;
+                    case 80:
+                        gravity_down(field);
+                        key_valid = 1;
+                        break;
+                    case 75:
+                        gravity_left(field);
+                        key_valid = 1;
+                        break;
+                    case 77:
+                        gravity_right(field);
+                        key_valid = 1;
+                        break;
                 }
             }
-        }while(!key_valid);
+        } while (!key_valid);
 
-        win=check_gamestate(field);
+        win = check_win(field);
 
-    }while(run && !win && !fail);
+    } while (run && !win && check_legal_moves(field));
 
     clrscr();
-    print_field(field); //feld ausgeben
+    print_field(field);
 
-    if(win){
-        printf("you won!");
-    }
-    else if(fail){
-        printf("game over!");
-    }
-    else{
-        printf("whoops error lol");
+    if (win) {
+        printf("You won!\n");
+    } else {
+        printf("Game over!\n");
     }
 
     return 0;
