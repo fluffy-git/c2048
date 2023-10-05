@@ -327,7 +327,23 @@ void gravity_right(int m[4][4]){
     }
 
 }
+int spawn_possible( int field[4][4])
+{
+    int i;
+    int j;
 
+    for(i=0; i<4; i++)
+    {
+        for(j=0; j<4; j++)
+        {
+            if(field[i][j]==0)
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 int main(){
 
     int field[4][4] =  {{0,0,0,0},
@@ -345,7 +361,11 @@ int main(){
         srand(time(NULL));
         key_valid = 0;
         clrscr();
-        spawn_num(field);
+        if(spawn_possible(field))
+        {
+            spawn_num(field);
+        }
+
         print_field(field);
 
         do {
