@@ -6,7 +6,7 @@
 
 // printing of the field
 
-void print_row_empty(){ //leere zeile
+void print_row_empty(){ //empty row
 
     for(int i = 0; i<4; i++){
         printf("%c ", 186);
@@ -17,7 +17,7 @@ void print_row_empty(){ //leere zeile
     printf("%c\n", 186);
 
 }
-void print_row(int m[4][4], int z){ //field & zeile
+void print_row(int m[4][4], int z){ //field & row
 
     for(int i = 0; i<4; i++){
         printf("%c ", 186);
@@ -97,7 +97,7 @@ void print_row(int m[4][4], int z){ //field & zeile
     printf("%c\n", 186);
 
 }
-void print_field(int m[4][4]){ // zeile
+void print_field(int m[4][4]){ // row
 
     textcolor(LIGHTGRAY);
 
@@ -124,8 +124,8 @@ void print_field(int m[4][4]){ // zeile
 
 //game logic
 
-int spawn_num(int feld[4][4]){
-    //testest
+int spawn_num(int feld[4][4]){ //spawning numbers after each move
+
     int i;
     int j;
     int done = 0;
@@ -160,7 +160,7 @@ int check_win(int m[4][4]){
 
 }
 
-int check_down(int m[4][4]) {
+int check_down(int m[4][4]) { // checking if numbers can be moved down
     int possible = 0;
     for (int x = 0; x < 4; x++) {
         for (int y = 3; y > 0; y--) {
@@ -175,7 +175,7 @@ int check_down(int m[4][4]) {
     return (possible > 0) ? 1 : 0;
 }
 
-int check_up(int m[4][4]) {
+int check_up(int m[4][4]) { // checking if numbers can be moved up
     int possible = 0;
     for (int x = 0; x < 4; x++) {
         for (int y = 0; y < 3; y++) {
@@ -190,7 +190,7 @@ int check_up(int m[4][4]) {
     return (possible > 0) ? 1 : 0;
 }
 
-int check_left(int m[4][4]) {
+int check_left(int m[4][4]) { // checking if numbers can be moved to the left
     int possible = 0;
     for (int y = 0; y < 4; y++) {
         for (int x = 0; x < 3; x++) {
@@ -205,7 +205,7 @@ int check_left(int m[4][4]) {
     return (possible > 0) ? 1 : 0;
 }
 
-int check_right(int m[4][4]) {
+int check_right(int m[4][4]) { //checking if numbers can be moved to the right
     int possible = 0;
     for (int y = 0; y < 4; y++) {
         for (int x = 3; x > 0; x--) {
@@ -220,7 +220,7 @@ int check_right(int m[4][4]) {
     return (possible > 0) ? 1 : 0;
 }
 
-int check_legal_moves(int m[4][4]) {
+int check_legal_moves(int m[4][4]) { //checking if moves are legal
     if (check_up(m) || check_down(m) || check_left(m) || check_right(m)) {
         return 1;
     } else {
@@ -228,7 +228,7 @@ int check_legal_moves(int m[4][4]) {
     }
 }
 
-int check_free(int field[4][4]){
+int check_free(int field[4][4]){ // checking if there are any free fields
     int i;
     int j;
 
@@ -247,7 +247,7 @@ int check_free(int field[4][4]){
 
 // gravity
 
-int gravity_down(int m[4][4]){
+int gravity_down(int m[4][4]){ //moves numbers downside
 
     for(int i =0; i<3; i++){
         if(check_down(m)==1){
@@ -275,7 +275,7 @@ int gravity_down(int m[4][4]){
 
 }
 
-int gravity_up(int m[4][4]){
+int gravity_up(int m[4][4]){ // moves numbers up
 
     for(int i =0; i<3; i++){
         if(check_up(m)==1){
@@ -303,7 +303,7 @@ int gravity_up(int m[4][4]){
 
 }
 
-int gravity_left(int m[4][4]){
+int gravity_left(int m[4][4]){ //moves numbers to the left
 
     for(int i =0; i<3; i++){
         if(check_left(m)==1){
@@ -331,7 +331,7 @@ int gravity_left(int m[4][4]){
 
 }
 
-int gravity_right(int m[4][4]){
+int gravity_right(int m[4][4]){ // moves numbers to the right
 
     for(int i =0; i<3; i++){
         if(check_right(m)==1){
@@ -359,7 +359,7 @@ int gravity_right(int m[4][4]){
 
 }
 
-int spawn_possible( int field[4][4]){
+int spawn_possible( int field[4][4]){ // checking if numbers need to be spawned
     int i;
     int j;
 
@@ -384,6 +384,7 @@ int main(){
                         {0,0,0,0},
                         {0,0,0,0},
                         {0,0,0,0}};
+
     int key_valid = 0;
     int run = 1;
     int win = 0;
@@ -403,7 +404,7 @@ int main(){
         print_field(field);
 
         do {
-            if (kbhit()) {
+            if (kbhit()) { // gets input from user
                 char c = getch();
                 switch (c) {
                     case 72:
@@ -428,12 +429,12 @@ int main(){
 
         win = check_win(field);
 
-    } while (run && !win && check_legal_moves(field) && !fail );
+    } while (run && !win && check_legal_moves(field) && !fail ); // checking if game needs to be run
 
     clrscr();
     print_field(field);
 
-    if (win) {
+    if (win) { // checking win or loss
         printf("You won!\n");
     } else {
         printf("Game over!\n");
