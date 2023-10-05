@@ -48,3 +48,6 @@ Thumbs.db
 *.depend
 *.o
 *.layout
+obj/Debug/main.o
+3.4.layout
+bin/Debug/3.exe
