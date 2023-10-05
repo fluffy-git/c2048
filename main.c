@@ -381,9 +381,9 @@ int spawn_possible( int field[4][4]){
 int main(){
 
     int field[4][4] =  {{0,0,0,0},
-                        {512,0,0,512},
                         {0,0,0,0},
-                        {1024,0,0,0}};
+                        {0,0,0,0},
+                        {0,0,0,0}};
     int key_valid = 0;
     int run = 1;
     int win = 0;
