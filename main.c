@@ -234,8 +234,8 @@ int check_legal_moves(int m[4][4]) {
 
 void gravity_down(int m[4][4]){
 
-    if(check_down(m)==1){
-        for(int i =0; i<3; i++){
+    for(int i =0; i<3; i++){
+        if(check_down(m)==1){
 
             for(int x=0; x<4; x++){
 
@@ -257,8 +257,8 @@ void gravity_down(int m[4][4]){
 }
 void gravity_up(int m[4][4]){
 
-    if(check_up(m)==1){
-        for(int i =0; i<3; i++){
+    for(int i =0; i<3; i++){
+        if(check_up(m)==1){
 
             for(int x=0; x<4; x++){
 
@@ -281,8 +281,8 @@ void gravity_up(int m[4][4]){
 
 void gravity_left(int m[4][4]){
 
-    if(check_left(m)==1){
-        for(int i =0; i<3; i++){
+    for(int i =0; i<3; i++){
+        if(check_left(m)==1){
 
             for(int y=0; y<4; y++){
 
@@ -305,8 +305,8 @@ void gravity_left(int m[4][4]){
 }
 void gravity_right(int m[4][4]){
 
-    if(check_right(m)==1){
-        for(int i =0; i<3; i++){
+    for(int i =0; i<3; i++){
+        if(check_right(m)==1){
 
             for(int y=0; y<4; y++){
 
