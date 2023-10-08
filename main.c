@@ -8,17 +8,19 @@
 
 void print_row_empty(){ //empty row
 
+    printf("      ");
     for(int i = 0; i<4; i++){
         printf("%c ", 186);
         textcolor(LIGHTRED);
         printf("      ");
         textcolor(LIGHTGRAY);
     }
-    printf("%c\n", 186);
+    printf("%c     \n", 186);
 
 }
 void print_row(int m[4][4], int z){ //field & row
 
+    printf("      ");
     for(int i = 0; i<4; i++){
         printf("%c ", 186);
 
@@ -94,42 +96,208 @@ void print_row(int m[4][4], int z){ //field & row
 
         textcolor(LIGHTGRAY);
     }
-    printf("%c\n", 186);
+    printf("%c     \n", 186);
 
 }
-void print_field(int m[4][4]){ // row
+void print_field(int m[4][4],int score){ // row
 
     textcolor(LIGHTGRAY);
+    print_score(score);
 
-    printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 187);
+    printf("      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c     \n", 201, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 187);
     print_row_empty();
     print_row(m,0);
     print_row_empty();
-    printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 204, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 185);
+    printf("      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c     \n", 204, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 185);
     print_row_empty();
     print_row(m,1);
     print_row_empty();
-    printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 204, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 185);
+    printf("      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c     \n", 204, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 185);
     print_row_empty();
     print_row(m,2);
     print_row_empty();
-    printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 204, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 185);
+    printf("      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c     \n", 204, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 185);
     print_row_empty();
     print_row(m,3);
     print_row_empty();
-    printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 188);
+    printf("      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c     \n", 200, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 188);
     textcolor(LIGHTGRAY);
+
+}
+void print_logo(){
+
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    textcolor(LIGHTRED);
+    printf("    %c%c%c%c%c%c%c%c%c%c%c%c%c%c  %c%c%c%c%c%c%c %c%c%c  %c%c%c %c%c%c%c%c%c \n", 219, 219, 219, 219, 219, 219, 187,  219, 219, 219, 219, 219, 219, 187, 219, 219, 219, 219, 219, 219, 187, 219, 219, 187, 219, 219, 187, 219, 219, 219, 219, 219, 187);
+    printf("   %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 219 ,  219 ,  201 ,  205 ,  205 ,  205 ,  205 ,  188 ,  200 ,  205 ,  205 ,  205 ,  205 ,  219 ,  219 ,  187 ,  219 ,  219 ,  201 ,  205 ,  219 ,  219 ,  219 ,  219 ,  187 ,  219 ,  219 ,  186 ,  32 ,  32 ,  219 ,  219 ,  186 ,  219 ,  219 ,  201 ,  205 ,  205 ,  219 ,  219 ,  187);
+    printf("   %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 219 ,  219 ,  186 ,  32 ,  32 ,  32 ,  32 ,  32 ,  32 ,  219 ,  219 ,  219 ,  219 ,  219 ,  201 ,  188 ,  219 ,  219 ,  186 ,  219 ,  219 ,  201 ,  219 ,  219 ,  186 ,  219 ,  219 ,  219 ,  219 ,  219 ,  219 ,  219 ,  186 ,  200 ,  219 ,  219 ,  219 ,  219 ,  219 ,  201 ,  188);
+    printf("   %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 219 ,  219 ,  186 ,  32 ,  32 ,  32 ,  32 ,  32 ,  219 ,  219 ,  201 ,  205 ,  205 ,  205 ,  188 ,  32 ,  219 ,  219 ,  219 ,  219 ,  201 ,  188 ,  219 ,  219 ,  186 ,  200 ,  205 ,  205 ,  205 ,  205 ,  219 ,  219 ,  186 ,  219 ,  219 ,  201 ,  205 ,  205 ,  219 ,  219 ,  187);
+    printf("   %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200 ,  219 ,  219 ,  219 ,  219 ,  219 ,  219 ,  187 ,  219 ,  219 ,  219 ,  219 ,  219 ,  219 ,  219 ,  187 ,  200 ,  219 ,  219 ,  219 ,  219 ,  219 ,  219 ,  201 ,  188 ,  32 ,  32 ,  32 ,  32 ,  32 ,  219 ,  219 ,  186 ,  200 ,  219 ,  219 ,  219 ,  219 ,  219 ,  201 ,  188);
+    printf("    %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200 ,  205 ,  205 ,  205 ,  205 ,  205 ,  188 ,  200 ,  205 ,  205 ,  205 ,  205 ,  205 ,  205 ,  188 ,  32 ,  200 ,  205 ,  205 ,  205 ,  205 ,  205 ,  188 ,  32 ,  32 ,  32 ,  32 ,  32 ,  32 ,  200 ,  205 ,  188 ,  32 ,  200 ,  205 ,  205 ,  205 ,  205 ,  188);
+}
+void print_score(int score){
+
+    char input[33];
+
+    int totalWidth = 33;
+    sprintf(input, "Score: %d", score);
+    int inputWidth = strlen(input);
+
+
+    printf("      ");
+    if (inputWidth >= totalWidth) {
+        // String is as wide as or wider than the line, print it as is.
+        printf("%s\n", input);
+    } else {
+        // Calculate padding on both sides to center the string.
+        int padding = (totalWidth - inputWidth) / 2;
+
+        // Print leading spaces.
+        for (int i = 0; i < padding; ++i) {
+            printf(" ");
+        }
+
+        // Print the string.
+        printf("%s", input);
+
+        // Print trailing spaces and newline.
+        for (int i = 0; i < padding; ++i) {
+            printf(" ");
+        }
+        printf("\n");
+    }
 
 }
 
 // sequences
+void zero_field(int m[4][4]){
+
+    for (int x = 0; x < 4; x++) {
+        for (int y = 0; y < 4; y++) {
+            m[y][x]=0;
+        }
+    }
+
+}
 
 void startup_seq(){
 
     SetConsoleTitle("  - c2048 -  ");
 
-    //HWND wh = GetConsoleWindow();
-    //MoveWindow(wh, 0, 0, 340, 180, TRUE);
+    HWND wh = GetConsoleWindow();
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    RECT rect;
+    COORD newSize;
+
+    GetWindowRect(wh, &rect);
+    MoveWindow(wh, rect.left, rect.top, 360, 360, TRUE);
+
+    newSize.X = 45;
+    newSize.Y = 20;
+    SetConsoleScreenBufferSize(hOut, newSize);
+
+    printf("\e[?25l"); //disable cursor
+
+    clrscr();
+    print_logo();
+
+    sleep(2);
+
+}
+
+void windowloop(){
+
+    HWND wh = GetConsoleWindow();
+
+    RECT rect;
+    GetWindowRect(wh, &rect);
+
+    MoveWindow(wh, rect.left, rect.top, 360, 360, TRUE);
+
+}
+
+void end_seq_win(){
+
+    gotoxy(18,9);
+    textcolor(LIGHTGRAY);
+    printf("%c%c%c%c%c%c%c%c%c ", 201, 205, 205, 205, 202, 205, 205, 205, 187);
+    gotoxy(18,10);
+    textcolor(LIGHTGRAY);
+    printf("%c ", 185);
+    textcolor(GREEN);
+    printf("You Won");
+    textcolor(LIGHTGRAY);
+    printf("%c",204);
+    gotoxy(18,11);
+    textcolor(LIGHTGRAY);
+    printf("%c%c%c%c%c%c%c%c%c ", 200, 205, 205, 205, 203, 205, 205, 205, 188);
+} //y10 x16
+
+void end_seq_loose(){
+
+    gotoxy(17,9);
+    textcolor(LIGHTGRAY);
+    printf("%c%c%c%c%c%c%c%c%c%c%c%c%c ", 201, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 187);
+    gotoxy(17,10);
+    textcolor(LIGHTGRAY);
+    printf("%c ", 185);
+    textcolor(RED);
+    printf("Game Over");
+    textcolor(LIGHTGRAY);
+    printf(" %c",204);
+    gotoxy(17,11);
+    textcolor(LIGHTGRAY);
+    printf("%c%c%c%c%c%c%c%c%c%c%c%c%c ", 200, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 188);
+} //y10 x16
+
+int end(){
+
+    int valid=0;
+    char c;
+
+    textcolor(LIGHTCYAN);
+    gotoxy(7,19);
+    printf("[R]estart");
+
+    gotoxy(17,19);
+    printf("[Q]uit");
+
+
+    do{
+        fflush(stdin);
+
+        c = getch();
+        switch(c){
+
+            case 'Q':
+            case 'q':
+                textcolor(LIGHTGRAY);
+                clrscr();
+                valid = 1;
+                return 0;
+                break;
+
+            case 'R':
+            case 'r':
+                textcolor(LIGHTGRAY);
+                clrscr();
+                valid = 1;
+                return 1;
+                break;
+
+            default:
+                valid = 0;
+
+        }
+    } while (!valid);
+
+
 
 }
 
@@ -258,7 +426,7 @@ int check_free(int field[4][4]){ // checking if there are any free fields
 
 // gravity
 
-int gravity_down(int m[4][4]){ //moves numbers downside
+int gravity_down(int m[4][4], int *score){ //moves numbers downside
 
     for(int i =0; i<3; i++){
         if(check_down(m)==1){
@@ -271,15 +439,16 @@ int gravity_down(int m[4][4]){ //moves numbers downside
 
                     if(over==current || current == 0){
                         m[y][x]+= m[y-1][x];
+                        *score += m[y-1][x];
                         m[y-1][x] = 0;
                     }
                 }
 
             }
 
-            Sleep(30);
+            Sleep(25);
             clrscr();
-            print_field(m);
+            print_field(m, *score);
 
         }
         else{
@@ -290,7 +459,7 @@ int gravity_down(int m[4][4]){ //moves numbers downside
 
 }
 
-int gravity_up(int m[4][4]){ // moves numbers up
+int gravity_up(int m[4][4], int *score){ // moves numbers up
 
     for(int i =0; i<3; i++){
         if(check_up(m)==1){
@@ -303,6 +472,7 @@ int gravity_up(int m[4][4]){ // moves numbers up
 
                     if(over==current || current == 0){
                         m[y][x]+= m[y+1][x];
+                        *score += m[y+1][x];
                         m[y+1][x] = 0;
                     }
                 }
@@ -311,7 +481,7 @@ int gravity_up(int m[4][4]){ // moves numbers up
 
             Sleep(30);
             clrscr();
-            print_field(m);
+            print_field(m, *score);
 
         }
         else{
@@ -322,7 +492,7 @@ int gravity_up(int m[4][4]){ // moves numbers up
 
 }
 
-int gravity_left(int m[4][4]){ //moves numbers to the left
+int gravity_left(int m[4][4], int *score){ //moves numbers to the left
 
     for(int i =0; i<3; i++){
         if(check_left(m)==1){
@@ -335,6 +505,7 @@ int gravity_left(int m[4][4]){ //moves numbers to the left
 
                     if(over==current || current == 0){
                         m[y][x]+= m[y][x+1];
+                        *score += m[y][x+1];
                         m[y][x+1] = 0;
                     }
                 }
@@ -343,7 +514,7 @@ int gravity_left(int m[4][4]){ //moves numbers to the left
 
             Sleep(30);
             clrscr();
-            print_field(m);
+            print_field(m, *score);
 
         }
         else{
@@ -354,7 +525,7 @@ int gravity_left(int m[4][4]){ //moves numbers to the left
 
 }
 
-int gravity_right(int m[4][4]){ // moves numbers to the right
+int gravity_right(int m[4][4], int *score){ // moves numbers to the right
 
     for(int i =0; i<3; i++){
         if(check_right(m)==1){
@@ -367,6 +538,7 @@ int gravity_right(int m[4][4]){ // moves numbers to the right
 
                     if(over==current || current == 0){
                         m[y][x]+= m[y][x-1];
+                        *score += m[y][x+1];
                         m[y][x-1] = 0;
                     }
                 }
@@ -375,7 +547,7 @@ int gravity_right(int m[4][4]){ // moves numbers to the right
 
             Sleep(30);
             clrscr();
-            print_field(m);
+            print_field(m, *score);
 
         }
         else{
@@ -407,67 +579,85 @@ int spawn_possible( int field[4][4]){ // checking if numbers need to be spawned
 
 int main(){
 
-    int field[4][4] =  {{0,0,0,0},
-                        {0,0,0,0},
-                        {0,0,0,0},
-                        {0,0,0,0}};
 
+    int field[4][4];
     int key_valid = 0;
     int run = 1;
     int win = 0;
     int fail = 0;
+    int restart = 0;
+    int score = 0;
 
     startup_seq();
 
-    spawn_num(field);
+    do{
 
-     do {
-        srand(time(NULL));
+        zero_field(field);
+
         key_valid = 0;
-        clrscr();
-        if(spawn_possible(field))
-        {
-            spawn_num(field);
-        }
+        run = 1;
+        win = 0;
+        fail = 0;
+        restart = 0;
+        score = 0;
 
-        print_field(field);
+        spawn_num(field);
 
         do {
-            if (kbhit()) { // gets input from user
-                char c = getch();
-                switch (c) {
-                    case 72:
-                        if(gravity_up(field) && (!check_free(field))){fail=1;}
-                        key_valid = 1;
-                        break;
-                    case 80:
-                        if(gravity_down(field) && (!check_free(field))){fail=1;}
-                        key_valid = 1;
-                        break;
-                    case 75:
-                        if(gravity_left(field) && (!check_free(field))){fail=1;}
-                        key_valid = 1;
-                        break;
-                    case 77:
-                        if(gravity_right(field) && (!check_free(field))){fail=1;}
-                        key_valid = 1;
-                        break;
-                }
+            srand(time(NULL));
+            key_valid = 0;
+            clrscr();
+            if(spawn_possible(field))
+            {
+                spawn_num(field);
             }
-        } while (!key_valid);
 
-        win = check_win(field);
+            print_field(field, score);
 
-    } while (run && !win && check_legal_moves(field) && !fail ); // checking if game needs to be run
+            do {
+                windowloop();
+                if (kbhit()) { // gets input from user
+                    char c = getch();
+                    switch (c) {
+                        case 72:
+                            if(gravity_up(field, &score) && (!check_free(field))){fail=1;}
+                            key_valid = 1;
+                            break;
+                        case 80:
+                            if(gravity_down(field, &score) && (!check_free(field))){fail=1;}
+                            key_valid = 1;
+                            break;
+                        case 75:
+                            if(gravity_left(field, &score) && (!check_free(field))){fail=1;}
+                            key_valid = 1;
+                            break;
+                        case 77:
+                            if(gravity_right(field, &score) && (!check_free(field))){fail=1;}
+                            key_valid = 1;
+                            break;
+                    }
+                }
+            } while (!key_valid);
 
-    clrscr();
-    print_field(field);
+            win = check_win(field);
 
-    if (win) { // checking win or loss
-        printf("You won!\n");
-    } else {
-        printf("Game over!\n");
-    }
+        } while (run && !win && check_legal_moves(field) && !fail ); // checking if game needs to be run
+
+        clrscr();
+        print_field(field,score);
+
+        if (win) { // checking win or loss
+            end_seq_win();
+        } else {
+            end_seq_loose();
+        }
+
+        restart=end();
+
+    }while(restart);
+
+
+    printf("\e[?25h");//re-enable cursor
 
     return 0;
 }
